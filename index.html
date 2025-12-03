@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Amigo Secreto?</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Fonte Poppins -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: "Poppins", sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      color: #ffffff;
+      text-align: center;
+
+      /* FUNDO ARCO-ÍRIS ANIMADO */
+      background: linear-gradient(
+        120deg,
+        #ff0000,
+        #ff8c00,
+        #ffff00,
+        #00ff00,
+        #0000ff,
+        #4b0082,
+        #ee82ee,
+        #ff0000
+      );
+      background-size: 400% 400%;
+      animation: rainbowBG 15s ease infinite;
+    }
+
+    @keyframes rainbowBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .container {
+      position: relative;
+      padding: 24px 32px;
+      border-radius: 24px;
+      background: rgba(0, 0, 0, 0.22);
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+      backdrop-filter: blur(10px);
+      max-width: 500px;
+      width: 90%;
+    }
+
+    h1 {
+      font-size: 1.9rem;
+      margin-bottom: 16px;
+      font-weight: 700;
+    }
+
+    p.sub {
+      font-size: 1rem;
+      margin-bottom: 22px;
+      opacity: 0.9;
+    }
+
+    .buttons-wrapper {
+      position: relative;
+      height: 150px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .btn {
+      border: none;
+      border-radius: 999px;
+      padding: 12px 28px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.15s ease;
+      white-space: nowrap;
+    }
+
+    #btn-sim {
+      position: absolute;
+      background: #00c853;
+      color: #ffffff;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    #btn-nao {
+      background: #ff1744;
+      color: #ffffff;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+      z-index: 2;
+    }
+
+    .btn:active {
+      transform: scale(0.93);
+    }
+
+    /* Modal */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.7);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+    }
+
+    .modal {
+      background: #ffffff;
+      border-radius: 18px;
+      padding: 24px 20px;
+      max-width: 360px;
+      width: 90%;
+      text-align: center;
+      color: #222;
+      position: relative;
+    }
+
+    .modal-tag {
+      position: absolute;
+      top: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #ff6b00;
+      color: #fff;
+      padding: 4px 14px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+
+    .modal img {
+      max-width: 180px;
+      display: block;
+      margin: 0 auto 12px;
+    }
+
+    .close-btn {
+      margin-top: 6px;
+      padding: 10px 20px;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      background: #ff1744;
+      color: #fff;
+      font-weight: 600;
+      font-size: 1rem;
+      box-shadow: 0 5px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    .close-btn:active {
+      transform: scale(0.96);
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <h1>Teremos amigo secreto esse ano?</h1>
+    <p class="sub">Escolha com sabedoria… 👀</p>
+
+    <div class="buttons-wrapper">
+      <button id="btn-sim" class="btn">Sim</button>
+      <button id="btn-nao" class="btn">Não</button>
+    </div>
+  </div>
+
+  <!-- MODAL COMPLETO -->
+  <div class="modal-backdrop" id="modal-backdrop">
+    <div class="modal">
+      <div class="modal-tag">Valeu!</div>
+
+      <img src="emoji-amigo.png" alt="Amigo dando joinha">
+
+      <h2>Obrigado, amigo!</h2>
+      <p>Você é um amigo de verdade! 🧡</p>
+
+      <button class="close-btn" id="close-modal">Fechar</button>
+
+      <!-- BOTÃO DE VOLTAR PARA INÍCIO -->
+      <button class="close-btn" style="background:#00c853;" onclick="window.location.reload();">
+        Voltar para a página inicial
+      </button>
+    </div>
+  </div>
+
+  <script>
+    const btnSim = document.getElementById("btn-sim");
+    const btnNao = document.getElementById("btn-nao");
+    const modalBackdrop = document.getElementById("modal-backdrop");
+    const closeModal = document.getElementById("close-modal");
+
+    // Faz botão SIM fugir
+    btnSim.addEventListener("mouseover", () => {
+      const wrapper = document.querySelector(".buttons-wrapper");
+      const maxX = wrapper.clientWidth - btnSim.clientWidth;
+      const maxY = wrapper.clientHeight - btnSim.clientHeight;
+
+      const newX = Math.random() * maxX;
+      const newY = Math.random() * maxY;
+
+      btnSim.style.left = `${newX}px`;
+      btnSim.style.top = `${newY}px`;
+    });
+
+    // Abre modal ao clicar NÃO
+    btnNao.addEventListener("click", () => {
+      modalBackdrop.style.display = "flex";
+    });
+
+    // Fecha modal
+    closeModal.addEventListener("click", () => {
+      modalBackdrop.style.display = "none";
+    });
+  </script>
+
+</body>
+</html>
