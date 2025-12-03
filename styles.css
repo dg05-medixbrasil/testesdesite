@@ -1,0 +1,200 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  font-family: "Poppins", sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  color: #ffffff;
+  text-align: center;
+
+  background: linear-gradient(
+    120deg,
+    #ff0000,
+    #ff8c00,
+    #ffff00,
+    #00ff00,
+    #0000ff,
+    #4b0082,
+    #ee82ee,
+    #ff0000
+  );
+  background-size: 400% 400%;
+  animation: rainbowBG 16s ease infinite;
+}
+
+@keyframes rainbowBG {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.container {
+  position: relative;
+  padding: 26px 32px;
+  border-radius: 24px;
+  background: rgba(0, 0, 0, 0.22);
+  max-width: 520px;
+  width: 92%;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+}
+
+h1 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.sub {
+  font-size: 1rem;
+  margin-bottom: 22px;
+  opacity: 0.9;
+}
+
+.buttons-wrapper {
+  position: relative;
+  height: 170px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn {
+  border: none;
+  border-radius: 999px;
+  padding: 12px 30px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+/* Botão SIM – começa centralizado, mas o JS faz ele fugir */
+#btn-sim {
+  position: absolute;
+  background: #00c853;
+  color: #ffffff;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Botão NÃO – fixo ao lado */
+#btn-nao {
+  background: #ff1744;
+  color: #ffffff;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+  position: relative;
+  z-index: 2;
+  margin-left: 170px;
+}
+
+/* MODAL */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.modal {
+  position: relative;
+  background: #ffffff;
+  color: #222222;
+  padding: 26px 22px 22px;
+  border-radius: 18px;
+  max-width: 380px;
+  width: 92%;
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.45);
+  text-align: center;
+}
+
+.modal-tag {
+  position: absolute;
+  top: -16px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #ff6b00;
+  color: #ffffff;
+  padding: 4px 16px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.modal img {
+  max-width: 210px;
+  width: 100%;
+  display: block;
+  margin: 0 auto 14px;
+  border-radius: 12px;
+}
+
+.modal h2 {
+  font-size: 1.25rem;
+  margin-bottom: 6px;
+  color: #ff6b00;
+}
+
+.modal p {
+  font-size: 0.98rem;
+  margin-bottom: 12px;
+}
+
+.close-btn {
+  margin-top: 8px;
+  padding: 9px 22px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  background: #ff1744;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 0.95rem;
+  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.3);
+  display: inline-block;
+}
+
+.close-btn.green {
+  background: #00c853;
+  margin-left: 6px;
+}
+
+.close-btn:active {
+  transform: scale(0.96);
+}
+
+/* Responsivo */
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.7rem;
+  }
+
+  #btn-nao {
+    margin-left: 0;
+    margin-top: 90px;
+  }
+
+  .buttons-wrapper {
+    height: 190px;
+  }
+}
