@@ -6,17 +6,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const btnReload = document.getElementById("btn-reload");
 
   function teleportSim() {
-    const btnWidth = btnSim.offsetWidth;
-    const btnHeight = btnSim.offsetHeight;
+    const w = window.innerWidth - btnSim.offsetWidth;
+    const h = window.innerHeight - btnSim.offsetHeight;
 
-    const maxX = window.innerWidth - btnWidth;
-    const maxY = window.innerHeight - btnHeight;
+    const x = Math.random() * w;
+    const y = Math.random() * h;
 
-    const newX = Math.random() * maxX;
-    const newY = Math.random() * maxY;
-
-    btnSim.style.left = newX + "px";
-    btnSim.style.top = newY + "px";
+    btnSim.style.left = x + "px";
+    btnSim.style.top = y + "px";
   }
 
   // Foge quando o mouse chega perto
@@ -27,18 +24,16 @@ document.addEventListener("DOMContentLoaded", () => {
       e.clientY - (rect.top + rect.height / 2)
     );
 
-    if (dist < 200) {
-      teleportSim();
-    }
+    if (dist < 180) teleportSim();
   });
 
-  // Se clicar, ainda foge
+  // Se clicar, ele foge mesmo assim
   btnSim.addEventListener("click", (e) => {
     teleportSim();
     e.preventDefault();
   });
 
-  // Botão NÃO abre o modal
+  // Abrir modal
   btnNao.addEventListener("click", () => {
     modalBackdrop.style.display = "flex";
   });
@@ -48,7 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
     modalBackdrop.style.display = "none";
   });
 
-  // Voltar
+  // Reset
   btnReload.addEventListener("click", () => {
     window.location.reload();
   });
