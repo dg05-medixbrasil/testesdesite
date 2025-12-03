@@ -5,15 +5,214 @@
   <title>Amigo Secreto?</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- CSS -->
-  <link rel="stylesheet" href="styles.css">
-
-  <!-- Fonte -->
+  <!-- Fonte Poppins -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      color: #ffffff;
+      text-align: center;
+
+      /* FUNDO LGBT ARCO-ÍRIS ANIMADO */
+      background: linear-gradient(
+        120deg,
+        #ff0000,
+        #ff8c00,
+        #ffff00,
+        #00ff00,
+        #0000ff,
+        #4b0082,
+        #ee82ee,
+        #ff0000
+      );
+      background-size: 400% 400%;
+      animation: rainbowBG 16s ease infinite;
+    }
+
+    @keyframes rainbowBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .container {
+      position: relative;
+      padding: 26px 32px 28px;
+      border-radius: 24px;
+      background: rgba(0, 0, 0, 0.22);
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+      backdrop-filter: blur(10px);
+      max-width: 520px;
+      width: 92%;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+
+    p.sub {
+      font-size: 1rem;
+      margin-bottom: 22px;
+      opacity: 0.9;
+    }
+
+    .buttons-wrapper {
+      position: relative;
+      height: 160px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .btn {
+      border: none;
+      border-radius: 999px;
+      padding: 12px 30px;
+      font-size: 1.05rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.15s ease;
+      white-space: nowrap;
+    }
+
+    /* Botão SIM – começa centralizado, mas foge */
+    #btn-sim {
+      position: absolute;
+      background: #00c853;
+      color: #ffffff;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    /* Botão NÃO – fixo do lado */
+    #btn-nao {
+      background: #ff1744;
+      color: #ffffff;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+      position: relative;
+      z-index: 2;
+      margin-left: 160px; /* empurra um pouco pro lado para não ficar em cima do SIM */
+    }
+
+    .btn:active {
+      transform: scale(0.93);
+    }
+
+    /* MODAL */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.7);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+    }
+
+    .modal {
+      background: #ffffff;
+      border-radius: 18px;
+      padding: 26px 22px 22px;
+      max-width: 380px;
+      width: 92%;
+      text-align: center;
+      color: #222;
+      position: relative;
+      box-shadow: 0 14px 32px rgba(0,0,0,0.45);
+    }
+
+    .modal-tag {
+      position: absolute;
+      top: -16px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #ff6b00;
+      color: #fff;
+      padding: 4px 16px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+
+    .modal img {
+      max-width: 210px;
+      width: 100%;
+      display: block;
+      margin: 0 auto 14px;
+      border-radius: 12px;
+    }
+
+    .modal h2 {
+      font-size: 1.25rem;
+      margin-bottom: 6px;
+      color: #ff6b00;
+    }
+
+    .modal p {
+      font-size: 0.98rem;
+      margin-bottom: 12px;
+    }
+
+    .close-btn {
+      margin-top: 8px;
+      padding: 9px 22px;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      background: #ff1744;
+      color: #fff;
+      font-weight: 600;
+      font-size: 0.95rem;
+      box-shadow: 0 5px 12px rgba(0, 0, 0, 0.3);
+      display: inline-block;
+    }
+
+    .close-btn.green {
+      background: #00c853;
+      margin-left: 6px;
+    }
+
+    .close-btn:active {
+      transform: scale(0.96);
+    }
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 1.7rem;
+      }
+
+      #btn-nao {
+        margin-left: 0;
+        margin-top: 90px;
+      }
+
+      .buttons-wrapper {
+        height: 190px;
+      }
+    }
+  </style>
 </head>
 
 <body>
-
   <div class="container">
     <h1>Teremos amigo secreto esse ano?</h1>
     <p class="sub">Escolha com sabedoria… 👀</p>
@@ -27,20 +226,57 @@
   <!-- MODAL -->
   <div class="modal-backdrop" id="modal-backdrop">
     <div class="modal">
-      <div class="modal-tag">Valeu!</div>
+      <div class="modal-tag">Obrigado amigo</div>
 
-      <!-- link do Pinterest NÃO funciona: explico abaixo -->
+      <!-- Usando o link que você mandou -->
       <img src="https://i.pinimg.com/736x/7c/22/20/7c22209f0fca7b825df22fd35e74c1db.jpg" alt="Amigo dando joinha">
 
-      <h2>Obrigado, amigo!</h2>
-      <p>Você é um amigo de verdade! 🧡</p>
+      <h2>obrigado amigo, você é um amigo 💛</h2>
+      <p>Sem você, esse fim de ano seria bem mais caótico. Você salvou o rolê do amigo secreto. 😌</p>
 
       <button class="close-btn" id="close-modal">Fechar</button>
       <button class="close-btn green" id="btn-reload">Voltar para a página inicial</button>
     </div>
   </div>
 
-  <script src="script.js"></script>
+  <script>
+    const btnSim = document.getElementById("btn-sim");
+    const btnNao = document.getElementById("btn-nao");
+    const modalBackdrop = document.getElementById("modal-backdrop");
+    const closeModal = document.getElementById("close-modal");
+    const btnReload = document.getElementById("btn-reload");
 
+    // Faz o botão "Sim" fugir sempre que o mouse se aproxima
+    btnSim.addEventListener("mouseenter", () => {
+      const wrapper = document.querySelector(".buttons-wrapper");
+      const wrapperRect = wrapper.getBoundingClientRect();
+
+      const btnRect = btnSim.getBoundingClientRect();
+      const maxX = wrapperRect.width - btnRect.width;
+      const maxY = wrapperRect.height - btnRect.height;
+
+      const newX = Math.random() * maxX;
+      const newY = Math.random() * maxY;
+
+      btnSim.style.left = `${newX}px`;
+      btnSim.style.top = `${newY}px`;
+      btnSim.style.transform = "none"; // remove centralização depois da primeira fuga
+    });
+
+    // Abre modal ao clicar em NÃO
+    btnNao.addEventListener("click", () => {
+      modalBackdrop.style.display = "flex";
+    });
+
+    // Fecha modal
+    closeModal.addEventListener("click", () => {
+      modalBackdrop.style.display = "none";
+    });
+
+    // Voltar para a "página inicial"
+    btnReload.addEventListener("click", () => {
+      window.location.reload();
+    });
+  </script>
 </body>
 </html>
