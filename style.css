@@ -14,6 +14,7 @@ body {
   color: #ffffff;
   text-align: center;
 
+  /* FUNDO ARCO-ÍRIS ANIMADO LGBT */
   background: linear-gradient(
     120deg,
     #ff0000,
@@ -77,24 +78,31 @@ p.sub {
   white-space: nowrap;
 }
 
+/* SIM – centralizado por padrão */
 #btn-sim {
   position: absolute;
   background: #00c853;
   color: #ffffff;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+
+  /* Centralizado dentro do wrapper */
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 
 #btn-nao {
   background: #ff1744;
   color: #ffffff;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+  z-index: 2;
 }
 
 .btn:active {
   transform: scale(0.93);
 }
 
-/* Modal */
+/* MODAL */
 .modal-backdrop {
   position: fixed;
   inset: 0;
