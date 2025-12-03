@@ -14,7 +14,6 @@ body {
   color: #ffffff;
   text-align: center;
 
-  /* FUNDO ARCO-ÍRIS ANIMADO LGBT */
   background: linear-gradient(
     120deg,
     #ff0000,
@@ -38,54 +37,49 @@ body {
 
 .container {
   position: relative;
-  padding: 24px 32px;
+  padding: 25px 32px;
   border-radius: 24px;
-  background: rgba(0, 0, 0, 0.22);
-  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+  background: rgba(0,0,0,0.27);
   backdrop-filter: blur(10px);
   max-width: 500px;
   width: 90%;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
 }
 
 h1 {
-  font-size: 1.9rem;
-  margin-bottom: 16px;
-  font-weight: 700;
+  font-size: 2rem;
+  margin-bottom: 12px;
 }
 
-p.sub {
-  font-size: 1rem;
-  margin-bottom: 22px;
-  opacity: 0.9;
+.sub {
+  opacity: .9;
+  margin-bottom: 20px;
 }
 
 .buttons-wrapper {
   position: relative;
   height: 150px;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
 }
 
 .btn {
   border: none;
-  border-radius: 999px;
   padding: 12px 28px;
+  border-radius: 999px;
   font-size: 1.1rem;
   font-weight: 600;
   cursor: pointer;
-  transition: transform 0.15s ease;
   white-space: nowrap;
 }
 
-/* SIM – centralizado por padrão */
 #btn-sim {
   position: absolute;
   background: #00c853;
-  color: #ffffff;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  color: #fff;
+  box-shadow: 0 8px 20px rgba(0,0,0,.3);
 
-  /* Centralizado dentro do wrapper */
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
@@ -93,73 +87,59 @@ p.sub {
 
 #btn-nao {
   background: #ff1744;
-  color: #ffffff;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
-  z-index: 2;
+  color: #fff;
+  box-shadow: 0 8px 20px rgba(0,0,0,.35);
 }
 
-.btn:active {
-  transform: scale(0.93);
-}
-
-/* MODAL */
+/* Modal */
 .modal-backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.7);
-  display: none;            /* começa escondido */
-  justify-content: center;  /* centraliza conteúdo */
+  background: rgba(0,0,0,.7);
+  display: none;
+  justify-content: center;
   align-items: center;
-  z-index: 999;
 }
 
 .modal {
-  background: #ffffff;
-  border-radius: 18px;
+  background: #fff;
+  color: #222;
   padding: 24px 20px;
+  border-radius: 18px;
   max-width: 360px;
   width: 90%;
   text-align: center;
-  color: #222;
-  position: relative;
+}
+
+.modal img {
+  max-width: 200px;
+  border-radius: 12px;
+  margin-bottom: 10px;
 }
 
 .modal-tag {
   position: absolute;
-  top: -14px;
+  top: -12px;
   left: 50%;
   transform: translateX(-50%);
   background: #ff6b00;
-  color: #fff;
-  padding: 4px 14px;
+  padding: 4px 16px;
   border-radius: 999px;
-  font-size: 0.8rem;
-  font-weight: 700;
-}
-
-.modal img {
-  max-width: 180px;
-  display: block;
-  margin: 0 auto 12px;
+  color: white;
+  font-weight: 600;
 }
 
 .close-btn {
-  margin-top: 6px;
+  margin-top: 10px;
   padding: 10px 20px;
   border-radius: 999px;
   border: none;
-  cursor: pointer;
   background: #ff1744;
   color: #fff;
+  cursor: pointer;
   font-weight: 600;
-  font-size: 1rem;
-  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.3);
 }
 
 .close-btn.green {
   background: #00c853;
-}
-
-.close-btn:active {
-  transform: scale(0.96);
 }
