@@ -6,34 +6,40 @@ document.addEventListener("DOMContentLoaded", () => {
   const btnReload = document.getElementById("btn-reload");
 
   function teleportSim() {
-    const w = window.innerWidth - btnSim.offsetWidth;
-    const h = window.innerHeight - btnSim.offsetHeight;
+    const btnWidth = btnSim.offsetWidth;
+    const btnHeight = btnSim.offsetHeight;
 
-    const x = Math.random() * w;
-    const y = Math.random() * h;
+    const maxX = window.innerWidth - btnWidth;
+    const maxY = window.innerHeight - btnHeight;
 
-    btnSim.style.left = x + "px";
-    btnSim.style.top = y + "px";
+    const newX = Math.random() * maxX;
+    const newY = Math.random() * maxY;
+
+    btnSim.style.left = newX + "px";
+    btnSim.style.top = newY + "px";
+    btnSim.style.transform = "none"; // depois da primeira fuga, não precisa mais centralizar
   }
 
-  // Foge quando o mouse chega perto
+  // Foge quando o mouse chega PERTO
   document.addEventListener("mousemove", (e) => {
     const rect = btnSim.getBoundingClientRect();
-    const dist = Math.hypot(
-      e.clientX - (rect.left + rect.width / 2),
-      e.clientY - (rect.top + rect.height / 2)
-    );
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
 
-    if (dist < 180) teleportSim();
+    const dist = Math.hypot(e.clientX - centerX, e.clientY - centerY);
+
+    if (dist < 180) {
+      teleportSim();
+    }
   });
 
-  // Se clicar, ele foge mesmo assim
+  // Se clicar (quase impossível), ele ainda foge
   btnSim.addEventListener("click", (e) => {
     teleportSim();
     e.preventDefault();
   });
 
-  // Abrir modal
+  // Botão NÃO abre modal
   btnNao.addEventListener("click", () => {
     modalBackdrop.style.display = "flex";
   });
@@ -43,7 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
     modalBackdrop.style.display = "none";
   });
 
-  // Reset
+  // Voltar
   btnReload.addEventListener("click", () => {
     window.location.reload();
   });
