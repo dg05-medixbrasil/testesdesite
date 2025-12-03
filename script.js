@@ -5,8 +5,9 @@ const closeModal = document.getElementById("close-modal");
 const btnReload = document.getElementById("btn-reload");
 
 // Faz o botão SIM fugir ao passar o mouse
-btnSim.addEventListener("mouseover", () => {
+btnSim.addEventListener("mouseenter", () => {
   const wrapper = document.querySelector(".buttons-wrapper");
+
   const maxX = wrapper.clientWidth - btnSim.clientWidth;
   const maxY = wrapper.clientHeight - btnSim.clientHeight;
 
@@ -15,7 +16,7 @@ btnSim.addEventListener("mouseover", () => {
 
   btnSim.style.left = `${newX}px`;
   btnSim.style.top = `${newY}px`;
-  btnSim.style.transform = "none"; // tira o translate(-50%, -50%) depois da primeira fuga
+  btnSim.style.transform = "none"; // remove o translate de centralização depois que ele foge
 });
 
 // Abre modal ao clicar em NÃO
@@ -23,7 +24,7 @@ btnNao.addEventListener("click", () => {
   modalBackdrop.style.display = "flex";
 });
 
-// Fecha modal
+// Fecha modal ao clicar em "Fechar"
 closeModal.addEventListener("click", () => {
   modalBackdrop.style.display = "none";
 });
