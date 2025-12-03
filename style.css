@@ -14,6 +14,7 @@ body {
   color: #ffffff;
   text-align: center;
 
+  /* FUNDO ARCO-ÍRIS ANIMADO LGBT */
   background: linear-gradient(
     120deg,
     #ff0000,
@@ -26,7 +27,7 @@ body {
     #ff0000
   );
   background-size: 400% 400%;
-  animation: rainbowBG 15s ease infinite;
+  animation: rainbowBG 16s ease infinite;
 }
 
 @keyframes rainbowBG {
@@ -36,108 +37,111 @@ body {
 }
 
 .container {
-  position: relative;
-  padding: 25px 32px;
+  padding: 26px 32px;
   border-radius: 24px;
-  background: rgba(0,0,0,0.27);
+  background: rgba(0, 0, 0, 0.22);
   backdrop-filter: blur(10px);
-  max-width: 500px;
-  width: 90%;
+  max-width: 520px;
+  width: 92%;
   box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
 }
 
 h1 {
   font-size: 2rem;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 
 .sub {
-  opacity: .9;
-  margin-bottom: 20px;
+  opacity: 0.9;
+  margin-bottom: 22px;
 }
 
 .buttons-wrapper {
   position: relative;
-  height: 150px;
+  height: 170px;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
 }
 
 .btn {
   border: none;
-  padding: 12px 28px;
+  padding: 12px 30px;
   border-radius: 999px;
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   font-weight: 600;
   cursor: pointer;
-  white-space: nowrap;
 }
 
+/* Botão SIM – começa centralizado, mas foge instantaneamente */
 #btn-sim {
   position: absolute;
   background: #00c853;
-  color: #fff;
-  box-shadow: 0 8px 20px rgba(0,0,0,.3);
+  color: #ffffff;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
 
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
 }
 
+/* Botão NÃO – fixo ao lado */
 #btn-nao {
   background: #ff1744;
-  color: #fff;
-  box-shadow: 0 8px 20px rgba(0,0,0,.35);
+  color: #ffffff;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+  position: relative;
+  z-index: 2;
+  margin-left: 170px;
 }
 
 /* Modal */
 .modal-backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,.7);
+  background: rgba(0, 0, 0, 0.7);
   display: none;
   justify-content: center;
   align-items: center;
 }
 
 .modal {
-  background: #fff;
+  background: #ffffff;
   color: #222;
-  padding: 24px 20px;
+  padding: 26px 22px;
   border-radius: 18px;
-  max-width: 360px;
-  width: 90%;
   text-align: center;
-}
-
-.modal img {
-  max-width: 200px;
-  border-radius: 12px;
-  margin-bottom: 10px;
+  max-width: 380px;
+  width: 92%;
 }
 
 .modal-tag {
   position: absolute;
-  top: -12px;
+  top: -16px;
   left: 50%;
   transform: translateX(-50%);
   background: #ff6b00;
   padding: 4px 16px;
   border-radius: 999px;
-  color: white;
+  color: #fff;
   font-weight: 600;
 }
 
+.modal img {
+  max-width: 210px;
+  border-radius: 10px;
+  margin-bottom: 12px;
+}
+
 .close-btn {
-  margin-top: 10px;
-  padding: 10px 20px;
+  padding: 10px 22px;
   border-radius: 999px;
   border: none;
   background: #ff1744;
   color: #fff;
   cursor: pointer;
   font-weight: 600;
+  margin-top: 8px;
 }
 
 .close-btn.green {
