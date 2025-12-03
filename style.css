@@ -16,7 +16,7 @@ body {
 
   /* FUNDO ARCO-ÍRIS ANIMADO LGBT */
   background: linear-gradient(
-    120deg, 
+    120deg,
     #ff0000,
     #ff8c00,
     #ffff00,
@@ -107,8 +107,8 @@ p.sub {
   position: fixed;
   inset: 0;
   background: rgba(0, 0, 0, 0.7);
-  display: none;
-  justify-content: center;
+  display: none;            /* começa escondido */
+  justify-content: center;  /* centraliza conteúdo */
   align-items: center;
   z-index: 999;
 }
