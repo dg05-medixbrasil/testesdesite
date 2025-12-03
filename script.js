@@ -5,20 +5,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const closeModal = document.getElementById("close-modal");
   const btnReload = document.getElementById("btn-reload");
 
-  // Se algo não foi encontrado, loga no console e para
+  // Segurança: se algo não existir, loga e para
   if (!btnSim || !btnNao || !modalBackdrop || !closeModal || !btnReload) {
-    console.error("Algum elemento não foi encontrado. Confira os IDs no HTML:");
-    console.error({
-      btnSim,
-      btnNao,
-      modalBackdrop,
-      closeModal,
-      btnReload
-    });
+    console.error("Algum elemento não foi encontrado. Confira os IDs no HTML.");
     return;
   }
 
-  // Função que teleporta o botão SIM para uma posição aleatória dentro do wrapper
+  // Teleporta o botão SIM para posição aleatória dentro do wrapper
   function teleportSim() {
     const wrapper = document.querySelector(".buttons-wrapper");
     if (!wrapper) return;
@@ -29,19 +22,18 @@ document.addEventListener("DOMContentLoaded", () => {
     const maxX = wrapperRect.width - btnRect.width;
     const maxY = wrapperRect.height - btnRect.height;
 
-    // Evita valores negativos, caso algo estranho aconteça
     const safeMaxX = Math.max(maxX, 0);
     const safeMaxY = Math.max(maxY, 0);
 
     const newX = Math.random() * safeMaxX;
     const newY = Math.random() * safeMaxY;
 
-    btnSim.style.left = `${newX}px`;
-    btnSim.style.top = `${newY}px`;
-    btnSim.style.transform = "none"; // remove a centralização inicial
+    btnSim.style.left = newX + "px";
+    btnSim.style.top = newY + "px";
+    btnSim.style.transform = "none"; // tira a centralização inicial
   }
 
-  // Foge quando o mouse chega PERTO do botão
+  // Foge quando o mouse chega PERTO do botão SIM
   document.addEventListener("mousemove", (e) => {
     const rect = btnSim.getBoundingClientRect();
     const centerX = rect.left + rect.width / 2;
@@ -55,7 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Se, por milagre, clicarem, ele ainda foge
+  // Se conseguir clicar, ainda assim ele foge e não faz nada
   btnSim.addEventListener("click", (e) => {
     teleportSim();
     e.preventDefault();
@@ -71,7 +63,7 @@ document.addEventListener("DOMContentLoaded", () => {
     modalBackdrop.style.display = "none";
   });
 
-  // Voltar ao início
+  // Voltar pra "página inicial"
   btnReload.addEventListener("click", () => {
     window.location.reload();
   });
